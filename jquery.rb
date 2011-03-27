@@ -44,7 +44,7 @@ namespace :jquery do
   task :update do
     http = Net::HTTP.new("ajax.googleapis.com",443)
     http.start do |http|
-        http.use_ssl = true
+        
         resp = http.get("/ajax/libs/jquery/1/jquery.min.js")
         open("public/javascripts/jquery.js", "wb") do |file|
             file.write(resp.body)
@@ -53,7 +53,7 @@ namespace :jquery do
 
     http = Net::HTTP.new("github.com", 443)
     http.start do |http|
-        http.use_ssl = true
+        
         resp = http.get("/rails/jquery-ujs/raw/master/src/rails.js")
         open("public/javascripts/rails.js", "wb") do |file|
             file.write(resp.body)
@@ -65,4 +65,3 @@ namespace :jquery do
 end
   TASK
 end
-
