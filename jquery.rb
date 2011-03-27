@@ -15,7 +15,7 @@ end
 get "http://code.jquery.com/jquery-latest.min.js", "public/javascripts/jquery.js"
 
 # Download latest jQuery drivers
-get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "public/javascripts/rails.js"
+get "http://github.com/rails/jquery-ujs/raw/master/src/rails.js", "public/javascripts/rails.js"
 
 # Remove jQuery Comments in application.rb
 gsub_file 'config/application.rb', /#\s*(JavaScript files you want as :defaults (application.js is always included).)/, '\1'
@@ -43,7 +43,6 @@ namespace :jquery do
   desc "Update jQuery and Rails jQuery drivers"
   task :update do
     http = Net::HTTP.new("ajax.googleapis.com",443)
-    http.use_ssl = true
     http.start do |http|
         http.use_ssl = true
         resp = http.get("/ajax/libs/jquery/1/jquery.min.js")
@@ -53,7 +52,6 @@ namespace :jquery do
     end
 
     http = Net::HTTP.new("github.com", 443)
-    http.use_ssl = true
     http.start do |http|
         http.use_ssl = true
         resp = http.get("/rails/jquery-ujs/raw/master/src/rails.js")
